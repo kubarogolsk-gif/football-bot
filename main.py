@@ -1,9 +1,16 @@
+import os
 import requests
+from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-TOKEN = "TWOJ_TOKEN_TELEGRAM"
-API_KEY = "TWOJ_API_KEY"
+load_dotenv()
+
+TOKEN = os.getenv("TOKEN")
+API_KEY = os.getenv("API_KEY")
+
+if not TOKEN or not API_KEY:
+    raise ValueError("TOKEN and API_KEY must be set in .env file")
 
 headers = {
     'x-apisports-key': API_KEY
